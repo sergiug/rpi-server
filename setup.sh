@@ -1,5 +1,9 @@
 apt-get update
 
+#disable sleep on lid close
+sed 's/#HandleLidSwitch=suspend/HandleLidSwitch=ignore/g' /etc/systemd/logind.conf
+service systemd-logind restart
+
 #install docker (remove old versions first)
 apt-get remove docker docker-engine docker.io containerd runc
 apt-get install -y \
